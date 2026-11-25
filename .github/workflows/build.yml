@@ -16,6 +16,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    
+      - name: Fix Loom repository configuration
+        run: |
+          SETTINGS_FILE=$(find _buildbuddy -name settings.gradle -o -name settings.gradle.kts | head -n 1)
+          if [ -n "$SETTINGS_FILE" ]; then
+            sed -i 's/RepositoriesMode.PREFER_SETTINGS/RepositoriesMode.PREFER_PROJECT/g' "$SETTINGS_FILE"
+            sed -i 's/RepositoriesMode.FAIL_ON_PROJECT_REPOS/RepositoriesMode.PREFER_PROJECT/g' "$SETTINGS_FILE"
+          fi
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
