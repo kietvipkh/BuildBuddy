@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'BuildBuddy-GitHub-starter.zip'
+      - 'BuildBuddy-GitHub-starter-fixed.zip'
       - '.github/workflows/build.yml'
 
 permissions:
@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Check ZIP file
-        run: test -f "BuildBuddy-GitHub-starter.zip"
+        run: test -f "BuildBuddy-GitHub-starter-fixed.zip"
 
       - name: Set up Java 25
         uses: actions/setup-java@v4
